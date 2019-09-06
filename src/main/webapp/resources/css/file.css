@@ -1,0 +1,55 @@
+@charset "UTF-8";
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+
+}
+
+#mainContainer {
+    width: 960px;
+    margin: 0 auto;
+    background-color: blanchedalmond;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.subContainer, .itemContainer {
+    text-align: center;
+    background-color: cornflowerblue;
+    line-height: 150px;
+    margin: 20px 20px;
+    height: 150px;
+    flex: 0 0 150px;
+}
+
+.dn {
+    display: none;
+}
+
+#clickMe:hover {
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+label {
+    width: 180px;
+    font-size: 100px;
+    padding-bottom: 10px;
+}
+
+.modal-header, h4, .close {
+  background-color: #5cb85c;
+  color:white !important;
+  text-align: center;
+  font-size: 30px;
+}
+.modal-footer {
+  background-color: #f9f9f9;
+}

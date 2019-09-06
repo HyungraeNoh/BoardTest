@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="login">
+
+  <select id="select" parameterType="String" resultType="String">
+ 		select count(*) from notice_user where id=#{id}
+  </select>
+   <select id="selectLogin" parameterType="String" resultType="com.java.web.LoginBean">
+ 		select id, nickname, profile_image, thumbnail_image from notice_user where id=#{id}
+  </select>
+  
+  <insert id="insert" parameterType="hashmap">
+ 		insert into notice_user values (#{id}, #{nickname}, #{profile_image},#{thumbnail_image})
+  </insert>
+
+</mapper>

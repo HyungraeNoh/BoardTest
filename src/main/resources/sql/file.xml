@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+  <select id="select" resultType="String">
+  		SELECT fileName FROM files WHERE delyn ='n';
+  </select>
+  <insert id="insert" parameterType="com.java.web.FilesBean">
+  		insert into files values (#{fileName}, #{fileURL}, #{delYn})
+  </insert>
+</mapper>
