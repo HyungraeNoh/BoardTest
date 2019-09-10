@@ -1,88 +1,14 @@
-html, body {
-    margin: 0;
-    padding: 0;
-}
+html, body {margin: 0; padding: 0;}
 
-nav {
-    margin: 0;
-    padding: 0;
-    float: left;
-    border: 1px black;
-    width: 210px;
-    height: 100vh;
-    background-color: #485cf5;
-    text-align: center;
-}
-.navy {
-    margin-top: 30px;
-}
-h1,h2 {
-    margin: 0;
-}
+header {text-align: center;}
+.t1 {background-color: blue; margin: auto; height: 80vh;}
+.t2 {background-color: white; width: 70%; margin: auto; height: 70%; border-radius: 20%;}
+#login {cursor: pointer; }
 
-.img {
-	margin:auto;
-	display : flex;
-    margin-top: 50px;   
-}
-.member {
-    margin-top: 5px;
-    width: 125px;
-    height: 36px;
-    background-color: #b6cfff;
-}
-.kakao {
-	margin : auto;
-    width: 60px;
-    height: 36px;
-    background-position: center;
-    background-image: url(../img/kakao1.jpg);
-}
-.fabook {
-    width: 60px;
-    height: 36px;
-    background-position: center;
-    background-image: url(../img/facebook1.png);
-}
+section {height: 80%;}
+table{margin: auto;}
+table tbody tr:hover{background: gray;}
+.button {text-align: right; padding: 5px 5px;}
+a {text-decoration:non;}
 
-.menu {
-    
-}
-
-main {
-    float: left;
-    width: calc(100% - 210px - 30%);
-    min-width: calc(920px - 210px - 30%);
-    height: 100vh;
-    background-color: white;       
-}
-
-.header {
-    height: 130px;
-}
-a {
-    margin-left: 20px;
-    float: left;
-}
-
-.new {
-    float: left;
-    width: 100%;
-}
-
-.list {
-    height: calc(100vh - 170px);
-    border: 1px solid #3c3131;
-    box-sizing: border-box;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-ad {
-    width: calc(30%);
-    background-color: aqua;
-    height: 100vh;
-    float: right;
-    background-image: url(../img/ad1.png);
-    background-size: contain;
-}
+h3{text-align: center;}

@@ -26,12 +26,12 @@ import net.sf.json.JSONObject;
 
 @Controller
 public class LoginController {
-	/*
+	/******************************************************************
 	 * 카카오 로그인
 	 * 1) 카카오 사이트 권한 요청 > code
 	 * 2) 카카오 사용자 토큰 발행 요청 > token
 	 * 3) 카카오 사용자 정보 요청 > 해당 token 사용자 정보 받기
-	 * */
+	 ******************************************************************/
 	@Autowired
 	SqlSession session;
 	@RequestMapping("/login")
@@ -71,7 +71,6 @@ public class LoginController {
 		
 //		userUrl = "https://kapi.kakao.com/v1/user/logout";
 //		userUrl += "?access_token=" + resultMap.get("access_token");
-//		
 		
 		System.out.println(userUrl);
 		resultMap=HttpUtil.getUrl(userUrl);

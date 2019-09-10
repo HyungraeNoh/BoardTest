@@ -52,36 +52,26 @@ public class HomeController {
 	@RequestMapping("/insert")
 	public String insert(HttpServletRequest req) {
 		session.insert("board.insert", new ListBean(0, req.getParameter("txt")));
-		return "redirect:/select";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/update")
 	public String update(HttpServletRequest req) {
 		session.update("board.update", new ListBean(Integer.parseInt(req.getParameter("no")), req.getParameter("txt")));
-		return "redirect:/select";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest req) {
 		session.update("board.delete", new ListBean(Integer.parseInt(req.getParameter("no")), req.getParameter("txt")));
-		return "redirect:/select";
+		return "redirect:/";
 	}
-	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String home() {
-//		return "home";
-//	}
-	
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//	public String login() {
-//
-//		return "login";
-//	}
 	
 	// 고유한 파일명 생성 (UUID)
 	String randomFileName = UUID.randomUUID().toString();
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String file(@RequestParam("file") MultipartFile[] files, HttpServletRequest req) {
+		session.insert("board.insert", new ListBean(0, req.getParameter("title"), req.getParameter("txt")));
 		try {
 			int[] statusList = new int[files.length];
 			for(int i = 0; i < files.length; i++) {
@@ -142,7 +132,7 @@ public class HomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "home";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/download/{originalName}/{ext}")
@@ -155,14 +145,7 @@ public class HomeController {
 		try {
 			InputStream input = new FileInputStream(path + fileName);
 			OutputStream output = res.getOutputStream();
-			IOUtils.copy(input, output);
-		/**********************************************************************************************
-		 * Header 정의
-		 * Content-Type : 전송되는 Content가 어떤 유형인지 알려주는 목적을 가지고 있습니다.
-		 * Content-Disposition : Content가 어떻게 처리되어야 하는지 나타냅니다.
-		 *  > attachment : 브라우저는 해당 Content를 처리하지 않고, 다운로드하게 됩니다.
-		 *  > inline: 브라우저가 Content를 즉시 출력해야 함을 나타냅니다.
-		 **********************************************************************************************/			
+			IOUtils.copy(input, output);		
 			res.setHeader("Content-Disposition", "attachment; filename=\"" + (originalFileName +"."+ext) + "\"");
 			input.close();
 			output.close();
@@ -176,7 +159,7 @@ public class HomeController {
 	@RequestMapping("/write")
 	public String write() {
 		
-		return "wirte";
+		return "write";
 	}
 	
 }

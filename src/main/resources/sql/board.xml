@@ -9,7 +9,7 @@
   </select>
   
   <insert id="insert" parameterType="com.java.web.ListBean">
-  		INSERT INTO board (TXT) VALUES (#{txt})
+  		INSERT INTO board (title,TXT) VALUES (#{title},#{txt})
   </insert>
   
   <update id="update" parameterType="com.java.web.ListBean">
