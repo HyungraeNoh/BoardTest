@@ -1,69 +1,154 @@
+<%@page import="org.springframework.web.bind.annotation.SessionAttributes"%>
+<%@page import="com.java.web.ListBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>게시판글쓰기</title>
-    <link rel="stlyesheet" href="/resources/css/file.css">
-    <script>
-		var dt = new DataTransfer();
-		function formList(){
-			console.log(dt);
-		}
-		function file_Event(obj){
-			console.log(obj.files);
-			for (var i = 0; i < obj.files.length; i++) {
-				var fileName = obj.files[i].name;
-				var ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length);
-				console.log(fileName, ext);
-				var extLower = ext.toLowerCase();
-				var text = "";
-				if("txt" == extLower) {
-					text = "텍스트";
-				} else if("pdf" == extLower || "html" == extLower){
-					text = "문서";
-				} else if("jpg" == extLower || "jpeg" == extLower || "png" == extLower) {
-					text = "이미지";
-				} else {
-					continue;
-				}
-				var node = document.createElement("LI");
-				var textnode = document.createTextNode(text);
-				node.appendChild(textnode);
-				node.classList.add("itemContainer");
-				document.getElementById("mainContainer").appendChild(node);
-				dt.items.add(obj.files[i]);
+<meta charset="UTF-8">
+<title>게시판글쓰기</title>
+<link rel="stlyesheet" type="text/css" href="/resources/css/file.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style type="text/css">
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #E6FFFF;
+}
+
+h2 {
+	text-align: center;
+}
+
+.boardBox {
+	width: 80%;
+	border: 1px solid #cccccc;
+	margin: auto;
+	padding: 20px;
+	margin-top: 20px;
+	background-color: #ffffff
+}
+
+.marginbt {
+	margin-bottom: 20px;
+}
+
+.width10 {
+	width: 10%;
+}
+
+.width80 {
+	width: 80%;
+}
+
+ul li {
+	list-style: none;
+}
+
+p {
+	float: left;
+}
+
+.line {
+	text-align: right;
+}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$("form").submit(function(e){
+			e.preventDefault();
+			var tf = document.getElementsByClassName("textForm");
+			for(var i=0; i<tf.length; i++){
+				if(tf[i].value ==""){
+					alert("글을 입력하시오");
+					return;
+				} 
 			}
+			$("form")[0].submit();
+		});
+	});
+
+	function back() {
+		location.href = "/";
+	}
+	
+	var dt = new DataTransfer();
+	function formList() {
+		console.log(dt);
+	}
+	function file_Event(obj) {
+		console.log(obj.files);
+		for (var i = 0; i < obj.files.length; i++) {
+			var fileName = obj.files[i].name;
+			var ext = fileName.substring(fileName.lastIndexOf(".") + 1,
+					fileName.length);
+			console.log(fileName, ext);
+			var extLower = ext.toLowerCase();
+			var text = "";
+			if ("txt" == extLower) {
+				text = "텍스트";
+			} else if ("pdf" == extLower || "html" == extLower) {
+				text = "문서";
+			} else if ("jpg" == extLower || "jpeg" == extLower
+					|| "png" == extLower) {
+				text = "이미지";
+			} else {
+				continue;
+			}
+			var node = document.createElement("LI");
+			var textnode = document.createTextNode(text);
+			node.appendChild(textnode);
+			node.classList.add("itemContainer");
+			document.getElementById("mainContainer").appendChild(node);
+			dt.items.add(obj.files[i]);
 		}
-    </script>
+	}
+	<%
+	List<ListBean> list = (List<ListBean>) request.getAttribute("list");
+	
+	%>
+	function update(){
+		
+		document.getElementsByName("title").value = <%=list.get(1).getTitle()%>
+		<%-- document.getElementsByName("txt").value = <%=list.get(1).getTxt()%> --%>
+	}
+	
+</script>
 </head>
-<body>
-    <div align="center" class="container">
-        <div align="left" style="width:600px; border:1px solid #cccccc; padding:20px; padding-left:50px; margin-top:20px; background-color:#ffffff">
-            <h4>게시판 글쓰기</h4>
-            <hr />
-            <form action="" method="post" enctype="multipart/form-data">
-	            <div class="form-inline" style="margin-bottom:10px">
-	                <label style="width:90px">글제목</label>
-	                <input name="title" type="text" class="form-control" style="width:400px" placeholder="글 제목을 입력하세요." />
-	            </div>
-	            
-	            <div class="form-inline" style="margin-bottom:10px">
-	                <label style="width:90px">글내용</label>
-	                <textarea name="txt" id="txt" class="form-control" style="width:400px; resize:none" rows="5" placeholder="글 내용을 입력하세요."></textarea>
-	            </div>
-		        <ul id="mainContainer">
-		            <li class="subContainer" id="clickMe">
-		                <input class="dn" id="file" type="file" name="file" onchange="file_Event(this)" multiple="multiple"><br>
-		               
-		            </li>
-		        </ul>
-		        <button type="button" onclick="formList()">확인</button>
-		        <input type="submit" value="전송" formaction="/">
-            </form>
-        </div>
-    </div>
+<body onload="update()">
+	<div>
+		<div class="boardBox">
+			<h2>게시판 글쓰기</h2>
+			<div class="line">
+				<button type="button" onclick="back()">목록보기</button>
+			</div>
+			<hr>
+			<form action="/" method="post" enctype="multipart/form-data">
+				<div class="marginbt">
+					<label class="width10">제 목</label> 
+					<input name="title" type="text"	class="textForm width80" placeholder="글 제목을 입력하세요." />
+				</div>
+				<div class="marginbt">
+					<label class="width10">내 용</label>
+					<textarea name="txt" id="txt" rows="5" class="textForm width80"
+						placeholder="글 내용을 입력하세요." required="required"></textarea>
+				</div>
+				<ul>
+					<li><input class="dn" id="file" type="file" name="file"
+						onchange="file_Event(this)" multiple="multiple"><br>
+					</li>
+				</ul>
+				<div class="line">
+					<input type="submit" value="저장" >
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

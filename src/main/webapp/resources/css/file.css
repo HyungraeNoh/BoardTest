@@ -1,3 +1,8 @@
 @charset "UTF-8";
 html, body {margin: 0; padding: 0;}
-body{background-color:#E6FFFF}
+body{background-color:#E6FFFF;}
+.boardBox{width:80%; border:1px solid #cccccc; margin: auto; padding:20px; margin-top:20px; background-color:#ffffff}
+.marginbt{margin-bottom: 20px;}
+.width10 {width: 10%;}
+.width80 {width: 80%;}
+ul li{list-style: none;}

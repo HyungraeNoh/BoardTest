@@ -5,11 +5,7 @@ public class ListBean {
 	private int no;
 	private String title;
 	private String txt;
-
-	public ListBean(int no, String txt) {
-		this.no = no;
-		this.txt = txt;
-	}
+	
 	public ListBean(int no, String txt, String title) {
 		this.no = no;
 		this.txt = txt;
@@ -17,6 +13,12 @@ public class ListBean {
 	}
 	public int getNo() {
 		return this.no;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getTxt() {
@@ -26,6 +28,7 @@ public class ListBean {
 	public void setTxt(String txt) {
 		this.txt = txt;
 	}
+	
 	
 
 }

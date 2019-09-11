@@ -7,15 +7,15 @@
     <head>
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <title>파일 업로드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+    <title>게시판</title>
 	<script>
-
-	function checkEvent(index){
-		// 체크박스 목록 가져오기
-		var check = document.getElementsByTag("tbody tr");
-	}
-	
+	/* $(document).ready(function(){
+		$("tbody tr").click(function(){
+			console.log(this.children[0].innerText);
+		});
+	}); */
 	 /* --------------------------------------------------------------------------- */
     
 		function write(){
@@ -34,15 +34,17 @@
     </header>
     <section class="t1">
         <div class="button">
-            <p style="color: white;">사용자 : </p>
+           	<p >사용자 : </p>
+           	<button type="button">로그아웃</button>
             <a href="/write"><button type="button">글 작성</button></a>
         </div>
         <div class="t2">
             <table>
                 <thead>
                     <tr>
-                        <th>번호</th>
-                        <th>한줄평</th>
+                        <th>번  호</th>
+                        <th>제  목</th>
+                        <th>내  용</th>
                         <th>작성자</th>
                     </tr>
                 </thead>
@@ -56,8 +58,9 @@
 							for(int i = 0; i < list.size(); i++){
 					%>
 								<tr>
-							      <%-- <td><input type="checkbox" onclick="checkEvent(<%=i %>)" name="checkbox"> </td> --%>
-							      <td><%=list.get(i).getNo() %></td>
+							      <!-- <td><input type="checkbox" onclick="checkEvent()" name="checkbox"> </td> -->
+							      <td style="text-align: center;"><a href=/?abc=<%=list.get(i).getNo()%>><%=list.get(i).getNo()%></a></td>
+							      <td><%=list.get(i).getTitle() %></td>
 							      <td><%=list.get(i).getTxt() %></td>
 							      <td></td>
 							    </tr>

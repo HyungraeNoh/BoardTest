@@ -1,13 +1,16 @@
 html, body {margin: 0; padding: 0;}
 
 header {text-align: center;}
-.t1 {background-color: blue; margin: auto; height: 80vh;}
+.t1 {background-color: #E6FFFF; margin: auto; height: 80vh;}
 .t2 {background-color: white; width: 70%; margin: auto; height: 70%; border-radius: 20%;}
 #login {cursor: pointer; }
 
 section {height: 80%;}
 table{margin: auto;}
-table tbody tr:hover{background: gray;}
+table tbody tr{border: none;}
+table tbody tr:hover{background: orange; }
+table th, td {padding: 0 20px; font-size: 18px; border: none;}
+
 .button {text-align: right; padding: 5px 5px;}
 a {text-decoration:non;}
 

@@ -43,6 +43,12 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String select(HttpServletRequest req) {
+		if(req.getParameter("abc") != null) {
+			int no = Integer.parseInt(req.getParameter("abc"));
+			ListBean tt = session.selectOne("board.tt", no);
+			req.setAttribute("no", tt);
+			return "/write";
+		}
 		List<ListBean> list = session.selectList("board.select");
 		System.out.println(list.size());
 		req.setAttribute("list", list);
@@ -51,19 +57,19 @@ public class HomeController {
 	
 	@RequestMapping("/insert")
 	public String insert(HttpServletRequest req) {
-		session.insert("board.insert", new ListBean(0, req.getParameter("txt")));
+		session.insert("board.insert", new ListBean(0,  req.getParameter("title"), req.getParameter("txt")));
 		return "redirect:/";
 	}
 	
 	@RequestMapping("/update")
 	public String update(HttpServletRequest req) {
-		session.update("board.update", new ListBean(Integer.parseInt(req.getParameter("no")), req.getParameter("txt")));
+		session.update("board.update", new ListBean(Integer.parseInt(req.getParameter("no")), req.getParameter("title"), req.getParameter("txt")));
 		return "redirect:/";
 	}
 	
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest req) {
-		session.update("board.delete", new ListBean(Integer.parseInt(req.getParameter("no")), req.getParameter("txt")));
+		session.update("board.delete", new ListBean(Integer.parseInt(req.getParameter("no")), req.getParameter("title"), req.getParameter("txt")));
 		return "redirect:/";
 	}
 	
@@ -157,7 +163,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/write")
-	public String write() {
+	public String write(HttpServletRequest req) {
 		
 		return "write";
 	}
