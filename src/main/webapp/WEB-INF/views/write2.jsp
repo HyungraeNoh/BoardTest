@@ -57,9 +57,7 @@ p {
 .line {
 	text-align: right;
 }
-.dn{
-	display: none;
-}
+
 </style>
 
 <script>
@@ -112,11 +110,22 @@ p {
 			dt.items.add(obj.files[i]);
 		}
 	}
+	<%
+		List<ListBean> list = (List<ListBean>)request.getAttribute("list");
+	/* 	System.out.println(list.get(0).getNo());
+		System.out.println(list.get(0).getTitle());
+		System.out.println(list.get(0).getTxt()); */
+	%>
+	function update(){
+		document.getElementsByName("title")[0].value = "<%=list.get(0).getTitle()%>"
+		document.getElementsByName("txt")[0].value = "<%=list.get(0).getTxt()%>"
+			
+	}
 	
 	
 </script>
 </head>
-<body >
+<body onload="update()">
 	<div>
 		<div class="boardBox">
 			<h2>게시판 글쓰기</h2>
@@ -140,9 +149,9 @@ p {
 					</li>
 				</ul>
 				<div class="line">
-					<input type="submit" name="add" class="add" value="저장" formaction="/insert">
-					<input type="submit" name="update" value="수정" class="dn update" formaction="redirect:/update">
-					<input type="submit" name="delete" value="삭제" class="dn delete" formaction="redirect:/delete">
+					
+					<input type="submit" name="update" value="수정" class="update" formaction="/update">
+					<input type="submit" name="delete" value="삭제" class="delete" formaction="/delete">
 				</div>
 			</form>
 		</div>

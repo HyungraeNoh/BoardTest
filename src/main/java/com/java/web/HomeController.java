@@ -47,11 +47,13 @@ public class HomeController {
 			int no = Integer.parseInt(req.getParameter("abc"));
 			List<ListBean> list = session.selectList("board.tt", no);
 
-			System.out.println(list.get(0).getNo());
-			System.out.println(list.get(0).getTitle());
-			System.out.println(list.get(0).getTxt());
+			/*
+			 * System.out.println(list.get(0).getNo());
+			 * System.out.println(list.get(0).getTitle());
+			 * System.out.println(list.get(0).getTxt());
+			 */
 			m.addAttribute("list", list);
-			return "write";
+			return "write2";
 		}
 		List<ListBean> list = session.selectList("board.select");
 		System.out.println(list.size());
@@ -86,10 +88,7 @@ public class HomeController {
 	String randomFileName = UUID.randomUUID().toString();
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String file(@RequestParam("file") MultipartFile[] files, HttpServletRequest req) {
-		/*
-		 * session.insert("board.insert", new ListBean(0, req.getParameter("title"),
-		 * req.getParameter("txt")));
-		 */
+		session.insert("board.insert", new ListBean(0, req.getParameter("title"), req.getParameter("txt")));
 		try {
 			int[] statusList = new int[files.length];
 			for(int i = 0; i < files.length; i++) {
