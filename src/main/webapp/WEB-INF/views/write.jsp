@@ -113,19 +113,32 @@ p {
 		}
 	}
 	<%
-	ListBean list = (ListBean)request.getAttribute("list");
+		List<ListBean> list = (List<ListBean>)request.getAttribute("list");
+		System.out.println(list.get(0).getNo());
+		System.out.println(list.get(0).getTitle());
+		System.out.println(list.get(0).getTxt());
 	%>
 	function update(){
-	<%
-		String noString = (String)request.getAttribute("no");
-		String title = (String)request.getAttribute("title");
-		String txt = (String)request.getAttribute("txt");
-		System.out.println(noString);
-		System.out.println(title);
-	%>
-		document.getElementsByName("title")[0].value = <%=title%>
-		document.getElementsByName("txt")[0].value = <%=txt%>
+		$(".add").hide()
+		$(".update").show();
+		$(".delete").show();
+		document.getElementsByName("title")[0].value = "<%=list.get(0).getTitle()%>"
+		document.getElementsByName("txt")[0].value = "<%=list.get(0).getTxt()%>"
 		
+		
+		var add1 = document.getElementsByName("add");
+		var update1 = document.getElementsByName("update");
+		var delete1 = document.getElementsByName("delete");
+	  /*  if(add1.style.display=='none'){
+	    	add1.style.display = 'none';
+	    	update1.style.display = 'block';
+	    	delete1.style.display = 'block';
+	    	
+	  	  }else{
+	    	add1.style.display = 'none';
+	    	update1.style.display = 'block';
+	    	delete1.style.display = 'block';
+	    } */
 	}
 	
 	
@@ -155,8 +168,9 @@ p {
 					</li>
 				</ul>
 				<div class="line">
-					<input type="submit" value="저장" >
-					<input type="submit" value="삭제" class="dn">
+					<input type="submit" name="add" class="add" value="저장" formaction="redirect:/insert">
+					<input type="submit" name="update" value="수정" class="dn update" formaction="redirect:/update">
+					<input type="submit" name="delete" value="삭제" class="dn delete" formaction="redirect:/delete">
 				</div>
 			</form>
 		</div>
