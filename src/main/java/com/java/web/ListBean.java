@@ -2,17 +2,22 @@ package com.java.web;
 
 public class ListBean {
 
-	private int no;
+	private String no;
 	private String title;
 	private String txt;
 	
-	public ListBean(int no, String txt, String title) {
+	public ListBean(String no, String title, String txt) {
 		this.no = no;
-		this.txt = txt;
 		this.title = title;
+		this.txt = txt;
+		
 	}
-	public int getNo() {
+	public String getNo() {
 		return this.no;
+	}
+	
+	public void setNo(String no) {
+		this.no = no;
 	}
 	public String getTitle() {
 		return title;

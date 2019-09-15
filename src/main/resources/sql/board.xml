@@ -8,7 +8,7 @@
   		SELECT NO, title , TXT FROM board WHERE DELYN = 'N'
   </select>
   
-  <select id="tt" resultType="com.java.web.ListBean" parameterType="Integer">
+  <select id="tt" resultType="com.java.web.ListBean" parameterType="String">
   		SELECT NO, title , TXT FROM board WHERE NO = #{no}
   </select>
   
@@ -16,8 +16,8 @@
   		INSERT INTO board (title,TXT) VALUES (#{title},#{txt})
   </insert>
   
-  <update id="update" parameterType="com.java.web.ListBean">
-  		update board set TXT = #{txt} where NO = #{no}
+  <update id="update" parameterType="com.java.web.ListBean" >
+  		update board set title = #{title}, TXT = #{txt} where NO = #{no}
   </update>
   
   <update id="delete" parameterType="com.java.web.ListBean">

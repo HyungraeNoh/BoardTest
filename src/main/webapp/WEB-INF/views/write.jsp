@@ -124,7 +124,7 @@ p {
 				<button type="button" onclick="back()">목록보기</button>
 			</div>
 			<hr>
-			<form action="/" method="post" enctype="multipart/form-data">
+			<form action="/insert" method="post" enctype="multipart/form-data">
 				<div class="marginbt">
 					<label class="width10">제 목</label> 
 					<input name="title" type="text"	class="textForm width80" placeholder="글 제목을 입력하세요." />
@@ -140,9 +140,7 @@ p {
 					</li>
 				</ul>
 				<div class="line">
-					<input type="submit" name="add" class="add" value="저장" formaction="/insert">
-					<input type="submit" name="update" value="수정" class="dn update" formaction="redirect:/update">
-					<input type="submit" name="delete" value="삭제" class="dn delete" formaction="redirect:/delete">
+					<input type="submit" name="add" class="add" value="저장">
 				</div>
 			</form>
 		</div>

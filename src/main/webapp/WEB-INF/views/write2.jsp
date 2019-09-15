@@ -61,17 +61,55 @@ p {
 </style>
 
 <script>
-	$(document).ready(function(){
-		$("form").submit(function(e){
-			e.preventDefault();
-			var tf = document.getElementsByClassName("textForm");
-			for(var i=0; i<tf.length; i++){
-				if(tf[i].value ==""){
-					alert("글을 입력하시오");
-					return;
-				} 
-			}
-			$("form")[0].submit();
+	$(document).ready(function(){	
+	<%
+		List<ListBean> list = (List<ListBean>)request.getAttribute("list");
+	/* 	System.out.println(list.get(0).getNo());
+		System.out.println(list.get(0).getTitle());
+		System.out.println(list.get(0).getTxt()); */
+		
+	%>
+		$("#no")[0].value = "<%=list.get(0).getNo()%>"
+		$("#title")[0].value = "<%=list.get(0).getTitle()%>"
+		$("#txt")[0].value = "<%=list.get(0).getTxt()%>"
+		
+		$(".update").on("click",function(){
+			var no = document.getElementsByName("no")[0].value;
+			var title = document.getElementsByName("title")[0].value;
+			var txt = document.getElementsByName("txt")[0].value;
+			console.log("REQ :",no,title,txt);
+			$.ajax({
+			    url: "/update", 
+			    data: { no: no, title : title, txt : txt}, 
+			    type: "POST",  
+			    dataType: "json"
+			})
+			.done(function(json) {
+			    location.href="/";
+			})
+			.always(function() {
+			    alert("요청이 완료되었습니다!");
+			    location.href="/";
+
+			});
+		});
+		
+		$(".delete").on("click", function(){
+			var no = document.getElementsByName("no")[0].value;
+			var title = document.getElementsByName("title")[0].value;
+			var txt = document.getElementsByName("txt")[0].value;
+			$.ajax({
+			    url: "/delete", 
+			    data: { no: no, title : title, txt : txt}, 
+			    type: "POST",
+			})
+			.done(function(json) {
+			    location.href="/";
+			})
+			.always(function() {
+			    alert("요청이 완료되었습니다!");
+			    location.href="/";
+			});
 		});
 	});
 
@@ -110,50 +148,50 @@ p {
 			dt.items.add(obj.files[i]);
 		}
 	}
-	<%
-		List<ListBean> list = (List<ListBean>)request.getAttribute("list");
-	/* 	System.out.println(list.get(0).getNo());
-		System.out.println(list.get(0).getTitle());
-		System.out.println(list.get(0).getTxt()); */
-	%>
-	function update(){
-		document.getElementsByName("title")[0].value = "<%=list.get(0).getTitle()%>"
-		document.getElementsByName("txt")[0].value = "<%=list.get(0).getTxt()%>"
-			
-	}
+	
+
+	
+
+	
 	
 	
 </script>
 </head>
-<body onload="update()">
+<body>
 	<div>
 		<div class="boardBox">
 			<h2>게시판 글쓰기</h2>
+			<div class="marginbt">
+					<label class="width10">번  호 : </label> 
+					<input type="text" name="no" id="no" class="no" disabled>
+				</div>
 			<div class="line">
 				<button type="button" onclick="back()">목록보기</button>
 			</div>
 			<hr>
+			<!-- form 위치를 no 위로 올리기 || function을 document.ready() 안에 넣기 -->			
 			<form action="/" method="post" enctype="multipart/form-data">
 				<div class="marginbt">
 					<label class="width10">제 목</label> 
-					<input name="title" type="text"	class="textForm width80" placeholder="글 제목을 입력하세요." />
+					<input name="title" id="title" type="text" class="textForm width80" required="required" placeholder="글 제목을 입력하세요." />
 				</div>
 				<div class="marginbt">
 					<label class="width10">내 용</label>
 					<textarea name="txt" id="txt" rows="5" class="textForm width80"
 						placeholder="글 내용을 입력하세요." required="required"></textarea>
 				</div>
-				<ul>
+				<!-- <ul>
 					<li><input class="" id="file" type="file" name="file"
 						onchange="file_Event(this)" multiple="multiple"><br>
 					</li>
-				</ul>
+				</ul> -->
 				<div class="line">
 					
-					<input type="submit" name="update" value="수정" class="update" formaction="/update">
-					<input type="submit" name="delete" value="삭제" class="delete" formaction="/delete">
+					<!-- <input type="submit" name="update" value="수정" class="update"> -->
 				</div>
 			</form>
+			<button id="update" name="update" class="update">수 정</button>
+			<button id="delete" name="delete" class="delete">삭 제</button>
 		</div>
 	</div>
 </body>

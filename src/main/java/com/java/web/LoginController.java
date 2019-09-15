@@ -35,7 +35,7 @@ public class LoginController {
 	@Autowired
 	SqlSession session;
 	@RequestMapping("/login")
-	public void login(HttpServletRequest req, HttpServletResponse res) {
+	public String login(HttpServletRequest req, HttpServletResponse res) {
 		try {
 			String url = "https://kauth.kakao.com/oauth/authorize";
 			url +="?client_id=24a9cf2f6258f5b091fcf38880647a8e&redirect_uri="; //rest api
@@ -48,6 +48,7 @@ public class LoginController {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+		return "redirect:/KakaoBack";
 	}
 	
 	@RequestMapping("/KakaoBack")
@@ -110,7 +111,7 @@ public class LoginController {
 //		catch (ServletException e) {
 //			e.printStackTrace();
 //		}
-		return "redirect:/";
+		return "redirect:/select";
 	}
 	@RequestMapping("/logout")
 	public void logout(HttpServletRequest req, HttpServletResponse res) {
