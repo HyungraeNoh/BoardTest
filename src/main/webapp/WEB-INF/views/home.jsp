@@ -14,17 +14,23 @@
 	/* $(document).ready(function(){
 		$("tbody tr").click(function(){
 			console.log(this.children[0].innerText);
+			for(var x=0; x < $("tbody tr").length; x++){
+	            param = {
+	                "no" : $("tbody tr td")[0].innerHTML,
+	                "title" : $("tbody tr td")[1].innerHTML,
+	                "txt" : $("tbody tr td")[2].innerHTML,
+	                "user" : $("tbody tr td")[3].innerHTML,
+	            };
 		});
 	}); */
-	 /* --------------------------------------------------------------------------- */
     
-		function write(){
-			var i = 0;
-			if(i =1){
-				System.out.println("로그인이 안될시 글쓰기로 안넘어가게 하는 예외처리");
-			}
-			location.href = "D:\\IDE\\workspace\\20190906\\src\\main\\webapp\\WEB-INF\\views\\wirte.jsp";
+	function write(){
+		var i = 0;
+		if(i =1){
+			System.out.println("로그인이 안될시 글쓰기로 안넘어가게 하는 예외처리");
 		}
+		location.href = "/write";
+	}
 	</script>
     </head>
     
@@ -57,13 +63,15 @@
 						} else {
 							for(int i = 0; i < list.size(); i++){
 					%>
+								
 								<tr>
 							      <!-- <td><input type="checkbox" onclick="checkEvent()" name="checkbox"> </td> -->
-							      <td style="text-align: center;"><a href=/?abc=<%=list.get(i).getNo()%>><%=list.get(i).getNo()%></a></td>
+							      <td style="text-align: center;"><a href="/?abc=<%=list.get(i).getNo()%>"><%=list.get(i).getNo()%></a></td>
 							      <td><%=list.get(i).getTitle() %></td>
 							      <td><%=list.get(i).getTxt() %></td>
 							      <td></td>
 							    </tr>
+							    
 					<%
 							}
 						}

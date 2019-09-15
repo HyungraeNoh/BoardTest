@@ -42,12 +42,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/")
-	public String select(HttpServletRequest req) {
+	public String select(HttpServletRequest req, Model m) {
 		if(req.getParameter("abc") != null) {
 			int no = Integer.parseInt(req.getParameter("abc"));
-			ListBean tt = session.selectOne("board.tt", no);
-			req.setAttribute("no", tt);
-			return "/write";
+			List<ListBean> list = session.selectList("board.tt", no);
+
+			System.out.println(list.get(no).getNo());
+			System.out.println(list.get(no).getTitle());
+			System.out.println(list.get(no).getTxt());
+			m.addAttribute("list", list);
+			return "write";
 		}
 		List<ListBean> list = session.selectList("board.select");
 		System.out.println(list.size());

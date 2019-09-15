@@ -57,6 +57,9 @@ p {
 .line {
 	text-align: right;
 }
+.dn{
+	display: none;
+}
 </style>
 
 <script>
@@ -110,14 +113,21 @@ p {
 		}
 	}
 	<%
-	List<ListBean> list = (List<ListBean>) request.getAttribute("list");
-	
+	ListBean list = (ListBean)request.getAttribute("list");
 	%>
 	function update(){
+	<%
+		String noString = (String)request.getAttribute("no");
+		String title = (String)request.getAttribute("title");
+		String txt = (String)request.getAttribute("txt");
+		System.out.println(noString);
+		System.out.println(title);
+	%>
+		document.getElementsByName("title")[0].value = <%=title%>
+		document.getElementsByName("txt")[0].value = <%=txt%>
 		
-		document.getElementsByName("title").value = <%=list.get(1).getTitle()%>
-		<%-- document.getElementsByName("txt").value = <%=list.get(1).getTxt()%> --%>
 	}
+	
 	
 </script>
 </head>
@@ -140,12 +150,13 @@ p {
 						placeholder="글 내용을 입력하세요." required="required"></textarea>
 				</div>
 				<ul>
-					<li><input class="dn" id="file" type="file" name="file"
+					<li><input class="" id="file" type="file" name="file"
 						onchange="file_Event(this)" multiple="multiple"><br>
 					</li>
 				</ul>
 				<div class="line">
 					<input type="submit" value="저장" >
+					<input type="submit" value="삭제" class="dn">
 				</div>
 			</form>
 		</div>

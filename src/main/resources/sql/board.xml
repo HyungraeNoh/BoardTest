@@ -8,8 +8,8 @@
   		SELECT NO, title , TXT FROM board WHERE DELYN = 'N'
   </select>
   
-  <select id="tt" resultType="com.java.web.ListBean" parameterType="int">
-  		SELECT NO FROM board WHERE NO = #{no}
+  <select id="tt" resultType="com.java.web.ListBean" parameterType="Integer">
+  		SELECT NO, title , TXT FROM board WHERE NO = #{no}
   </select>
   
   <insert id="insert" parameterType="com.java.web.ListBean">

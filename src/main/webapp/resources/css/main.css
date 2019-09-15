@@ -12,6 +12,6 @@ table tbody tr:hover{background: orange; }
 table th, td {padding: 0 20px; font-size: 18px; border: none;}
 
 .button {text-align: right; padding: 5px 5px;}
-a {text-decoration:non;}
+a {text-decoration:none; list-style: none;}
 
 h3{text-align: center;}
