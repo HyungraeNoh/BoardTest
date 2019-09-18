@@ -180,11 +180,11 @@ p {
 					<textarea name="txt" id="txt" rows="5" class="textForm width80"
 						placeholder="글 내용을 입력하세요." required="required"></textarea>
 				</div>
-				<!-- <ul>
+				<ul>
 					<li><input class="" id="file" type="file" name="file"
 						onchange="file_Event(this)" multiple="multiple"><br>
 					</li>
-				</ul> -->
+				</ul>
 				<div class="line">
 					
 					<!-- <input type="submit" name="update" value="수정" class="update"> -->

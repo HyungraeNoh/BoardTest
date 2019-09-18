@@ -6,12 +6,14 @@ header {text-align: center;}
 #login {cursor: pointer; }
 
 section {height: 80%;}
-table{margin: auto;}
+table {margin: auto;}
 table tbody tr{border: none;}
 table tbody tr:hover{background: orange; }
 table th, td {padding: 0 20px; font-size: 18px; border: none;}
 
-.button {text-align: right; padding: 5px 5px;}
+.button-right {text-align: right;}
+.padding10 {padding: 5px 10px; width: 40%;}
 a {text-decoration:none; list-style: none;}
+.left {float: left;}
 
-h3{text-align: center;}
+h3 {text-align: center;}

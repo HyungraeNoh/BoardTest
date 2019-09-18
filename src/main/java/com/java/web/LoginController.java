@@ -35,12 +35,12 @@ public class LoginController {
 	@Autowired
 	SqlSession session;
 	@RequestMapping("/login")
-	public String login(HttpServletRequest req, HttpServletResponse res) {
+	public void login(HttpServletRequest req, HttpServletResponse res) {
 		try {
 			String url = "https://kauth.kakao.com/oauth/authorize";
-			url +="?client_id=24a9cf2f6258f5b091fcf38880647a8e&redirect_uri="; //rest api
-			url +=URLEncoder.encode("http://gdj16.gudi.kr:20010/KakaoBack","UTF-8"); //uri
-			url +="&response_type=code"; //token 
+			url +="?client_id=24a9cf2f6258f5b091fcf38880647a8e&redirect_uri="; 
+			url +=URLEncoder.encode("http://gdj16.gudi.kr:20010/KakaoBack","UTF-8"); 
+			url +="&response_type=code"; 
 			System.out.println(url);
 			res.sendRedirect(url);
 		}catch(UnsupportedEncodingException e) {
@@ -48,7 +48,6 @@ public class LoginController {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/KakaoBack";
 	}
 	
 	@RequestMapping("/KakaoBack")
@@ -57,11 +56,10 @@ public class LoginController {
 		String code = req.getParameter("code");
 		System.out.println(code);
 		try {
-		//토큰 요청
 		String url="https://kauth.kakao.com/oauth/token";
-		url +="?client_id=24a9cf2f6258f5b091fcf38880647a8e&redirect_uri="; //rest api
-		url +=URLEncoder.encode("http://gdj16.gudi.kr:20010/KakaoBack","UTF-8"); //uri
-		url +="&code="+code; //token 
+		url +="?client_id=24a9cf2f6258f5b091fcf38880647a8e&redirect_uri="; 
+		url +=URLEncoder.encode("http://gdj16.gudi.kr:20010/KakaoBack","UTF-8");
+		url +="&code="+code; 
 		url +="&grant_type=authorization_code";
 		System.out.println(url);
 		
@@ -72,6 +70,7 @@ public class LoginController {
 		
 //		userUrl = "https://kapi.kakao.com/v1/user/logout";
 //		userUrl += "?access_token=" + resultMap.get("access_token");
+//		
 		
 		System.out.println(userUrl);
 		resultMap=HttpUtil.getUrl(userUrl);
@@ -92,13 +91,16 @@ public class LoginController {
 //		JSONObject userObject = JSONObject.fromObject(userResult);
 //		System.out.println(userObject.get("thumbnail_image"));
 		String id=(String) userResult.get("id");
-		if(session.selectOne("login.select",userResult.get("id")) == "0")
+		System.out.println("하하하하");
+			/* if(session.selectOne("login.select",userResult.get("id")) == "0") */
 		session.insert("login.insert",userResult);
 		
 		LoginBean resultList = session.selectOne("login.selectLogin",userResult.get("id"));
 		req.setAttribute("login", jObject);
 		req.setAttribute("result", resultList);
 		
+//		HttpSession hs=req.getSession();
+//		hs.setAttribute("login", "true");
 
 //		res.sendRedirect("/");
 //		RequestDispatcher rd=req.getRequestDispatcher("/");

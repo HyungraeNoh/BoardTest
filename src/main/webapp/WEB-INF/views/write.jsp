@@ -69,7 +69,7 @@ p {
 			var tf = document.getElementsByClassName("textForm");
 			for(var i=0; i<tf.length; i++){
 				if(tf[i].value ==""){
-					alert("글을 입력하시오");
+					alert("제목을 입력하시오");
 					return;
 				} 
 			}

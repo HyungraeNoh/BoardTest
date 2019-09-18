@@ -31,6 +31,13 @@
 		}
 		location.href = "/write";
 	}
+	
+	function date(){
+		 var d = new Date();
+	     var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일";
+	     document.getElementById("date").innerHTML = currentDate;
+	}
+	
 	</script>
     </head>
     
@@ -39,11 +46,23 @@
         <h1>Hellow Community World</h1>
     </header>
     <section class="t1">
-        <div class="button">
-           	<p >사용자 : </p>
-           	<button type="button">로그아웃</button>
-            <a href="/write"><button type="button">글 작성</button></a>
-        </div>
+	    
+		    <div class="padding10">
+		    	<p >사용자 : </p>
+		    	
+		    	<div id="date"></div>
+			    <div>
+			    	<form action="">
+			    		<input type="submit" formaction="/login" value="로그인">
+			    		<input type="submit" formaction="/logout" value="로그아웃">
+			    	</form>
+		           	
+			    </div>
+		    </div>
+	        <div class="button-right padding10">
+	            <a href="/write"><button type="button">글 작성</button></a>
+	        </div>
+        
         <div class="t2">
             <table>
                 <thead>
