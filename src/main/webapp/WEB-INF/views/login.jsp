@@ -46,9 +46,9 @@ function logout(){
 </script>
 
 	<h1>카카오 로그인</h1>
-	<form>
-	<button type="submit" id="login" name="login" formaction="/login">로그인</button>
-	<input type="submit" id="logout" name="logout" formaction="https://developers.kakao.com/logout" value="로그아웃" onclick="logout()"></button>
+	<form action="/loginkakao" >
+		<input type="submit" id="login" name="login"  value="로그인">
+		<input type="submit" id="logout" name="logout" formaction="/logout" value="로그아웃" onclick="logout()"></button>
 	</form>
 	<%if(user!=null) {%>
 	<p><%=user.getId()%></p>

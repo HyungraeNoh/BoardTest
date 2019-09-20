@@ -2,18 +2,21 @@ html, body {margin: 0; padding: 0;}
 
 header {text-align: center;}
 .t1 {background-color: #E6FFFF; margin: auto; height: 80vh;}
-.t2 {background-color: white; width: 70%; margin: auto; height: 70%; border-radius: 20%;}
+.t2 {background-color: white; width: 70%; margin: auto; height: 70%; border-radius: 20%; clear: both;}
 #login {cursor: pointer; }
 
 section {height: 80%;}
-table {margin: auto;}
+table {margin: auto; clear: both;}
 table tbody tr{border: none;}
 table tbody tr:hover{background: orange; }
 table th, td {padding: 0 20px; font-size: 18px; border: none;}
 
 .button-right {text-align: right;}
-.padding10 {padding: 5px 10px; width: 40%;}
+.padding10 {padding: 5px 10px;}
+.width45 {width: 45%; display: inline-block;}
 a {text-decoration:none; list-style: none;}
 .left {float: left;}
-
+.left:after {clear: both;}
+.right {float: right;}
+.right:after {clear:both;}
 h3 {text-align: center;}

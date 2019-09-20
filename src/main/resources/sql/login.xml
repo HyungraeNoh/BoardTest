@@ -12,7 +12,7 @@
   </select>
   
   <insert id="insert" parameterType="hashmap">
- 		insert into notice_user values (#{id}, #{nickname}, #{profile_image},#{thumbnail_image})
+ 		insert into notice_user (id, nickname,profile_image, thumbnail_image) values (#{id}, #{nickname}, #{profile_image},#{thumbnail_image})
   </insert>
 
 </mapper>

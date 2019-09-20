@@ -24,13 +24,7 @@
 		});
 	}); */
     
-	function write(){
-		var i = 0;
-		if(i =1){
-			System.out.println("로그인이 안될시 글쓰기로 안넘어가게 하는 예외처리");
-		}
-		location.href = "/write";
-	}
+	
 	
 	function date(){
 		 var d = new Date();
@@ -38,6 +32,17 @@
 	     document.getElementById("date").innerHTML = currentDate;
 	}
 	
+	function checklogin(){
+		var wb = document.getElementById('write');
+		wb.disabled=ture;
+		if(<%=session.getAttribute("id")%> == null){
+			wb.disabled=false;
+			alter("로그인이 하시오!");
+			location.href = "/loginkakao";
+		}else{
+			wb.disabled=ture;
+		}
+	}
 	</script>
     </head>
     
@@ -48,19 +53,19 @@
     <section class="t1">
 	    
 		    <div class="padding10">
-		    	<p >사용자 : </p>
+		    	<p >사용자 : <%=session.getAttribute("id")%> </p>
 		    	
-		    	<div id="date"></div>
-			    <div>
-			    	<form action="">
-			    		<input type="submit" formaction="/login" value="로그인">
-			    		<input type="submit" formaction="/logout" value="로그아웃">
-			    	</form>
-		           	
-			    </div>
+		    	<label id="date"></label>
 		    </div>
-	        <div class="button-right padding10">
-	            <a href="/write"><button type="button">글 작성</button></a>
+		    <div class="padding10 width45">
+		    	<form action="">
+		    		<input type="submit" formaction="/loginkakao" value="로그인">
+		    		<input type="submit" formaction="/logout" value="로그아웃">
+		    	</form>
+	           	
+		    </div>
+	        <div class="padding10 width45 left write" id="write">
+	            <a href="/write" style="float: right;"><button type="button">글 작성</button></a>
 	        </div>
         
         <div class="t2">
