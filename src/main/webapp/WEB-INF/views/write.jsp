@@ -64,6 +64,8 @@ p {
 
 <script>
 	$(document).ready(function(){
+		$("#nickname").hide()
+		$("#id").hide()
 		$("form").submit(function(e){
 			e.preventDefault();
 			var tf = document.getElementsByClassName("textForm");
@@ -76,6 +78,7 @@ p {
 			$("form")[0].submit();
 		});
 	});
+	
 
 	function back() {
 		location.href = "/";
@@ -125,6 +128,7 @@ p {
 			</div>
 			<hr>
 			<form action="/insert" method="post" enctype="multipart/form-data">
+				
 				<div class="marginbt">
 					<label class="width10">제 목</label> 
 					<input name="title" type="text"	class="textForm width80" placeholder="글 제목을 입력하세요." />
@@ -133,15 +137,20 @@ p {
 					<label class="width10">내 용</label>
 					<textarea name="txt" id="txt" rows="5" class="textForm width80"
 						placeholder="글 내용을 입력하세요." required="required"></textarea>
+					
 				</div>
 				<ul>
 					<li><input class="" id="file" type="file" name="file"
 						onchange="file_Event(this)" multiple="multiple"><br>
 					</li>
 				</ul>
+				
 				<div class="line">
 					<input type="submit" name="add" class="add" value="저장">
+					<input style="text-align: center;" type="text" id="nickname" name="nickname" value="<%=session.getAttribute("nickname")%>">
+					<input style="text-align: center;" type="text" id="id" name="id" class="textForm" value="<%=session.getAttribute("id")%>">
 				</div>
+				
 			</form>
 		</div>
 	</div>

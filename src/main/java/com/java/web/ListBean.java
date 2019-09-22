@@ -5,11 +5,15 @@ public class ListBean {
 	private String no;
 	private String title;
 	private String txt;
+	private String id;
+	private String nickname;
 	
-	public ListBean(String no, String title, String txt) {
+	public ListBean(String no, String title, String txt, String id, String nickname) {
 		this.no = no;
 		this.title = title;
 		this.txt = txt;
+		this.id = id;
+		this.nickname = nickname;
 		
 	}
 	public String getNo() {
@@ -32,6 +36,18 @@ public class ListBean {
 
 	public void setTxt(String txt) {
 		this.txt = txt;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	
 	

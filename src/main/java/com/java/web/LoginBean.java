@@ -5,6 +5,7 @@ public class LoginBean {
 	private String nickname;
 	private String profile_image;
 	private String thumbnail_image;
+
 	
 	@Override
 	public String toString() {

@@ -69,18 +69,36 @@ p {
 		System.out.println(list.get(0).getTxt()); */
 		
 	%>
+		console.log("<%=list.get(0).getNickname()%>")
 		$("#no")[0].value = "<%=list.get(0).getNo()%>"
 		$("#title")[0].value = "<%=list.get(0).getTitle()%>"
 		$("#txt")[0].value = "<%=list.get(0).getTxt()%>"
+		$("#nickname")[0].value = "<%=list.get(0).getNickname()%>"
+		$("#nickname").hide();
+		$("#id").hide();
+		
+		console.log("test1");
+		if("<%=list.get(0).getId()%>" == "<%=session.getAttribute("id")%>"){
+			console.log("test2");
+			$("#update").prop("disabled", false);
+			$("#delete").prop("disabled", false);
+		}else{
+			console.log("test3");
+			$("#update").prop("disabled", true);
+			$("#delete").prop("disabled", true);
+		}
+		console.log("test4");
 		
 		$(".update").on("click",function(){
 			var no = document.getElementsByName("no")[0].value;
 			var title = document.getElementsByName("title")[0].value;
 			var txt = document.getElementsByName("txt")[0].value;
+			var id = document.getElementsByName("id")[0].value;
+			var nickname = document.getElementsByName("nickname")[0].value;
 			console.log("REQ :",no,title,txt);
 			$.ajax({
 			    url: "/update", 
-			    data: { no: no, title : title, txt : txt}, 
+			    data: { no: no, title : title, txt : txt, id : id, nickname :nickname}, 
 			    type: "POST",  
 			    dataType: "json"
 			})
@@ -98,9 +116,11 @@ p {
 			var no = document.getElementsByName("no")[0].value;
 			var title = document.getElementsByName("title")[0].value;
 			var txt = document.getElementsByName("txt")[0].value;
+			var id = document.getElementsByName("id")[0].value;
+			var nickname = document.getElementsByName("nickname")[0].value;
 			$.ajax({
 			    url: "/delete", 
-			    data: { no: no, title : title, txt : txt}, 
+			    data: { no: no, title : title, txt : txt, id : id, nickname :nickname}, 
 			    type: "POST",
 			})
 			.done(function(json) {
@@ -186,7 +206,8 @@ p {
 					</li>
 				</ul>
 				<div class="line">
-					
+					<input style="text-align: center;" type="text" id="nickname" name="nickname" value="<%=session.getAttribute("nickname")%>">
+					<input style="text-align: center;" type="text" id="id" name="id" class="textForm" value="<%=session.getAttribute("id")%>">
 					<!-- <input type="submit" name="update" value="수정" class="update"> -->
 				</div>
 			</form>

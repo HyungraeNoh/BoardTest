@@ -6,8 +6,8 @@ header {text-align: center;}
 #login {cursor: pointer; }
 
 section {height: 80%;}
-table {margin: auto; clear: both;}
-table tbody tr{border: none;}
+table {margin: auto; clear: both; border-style: none;}
+table tbody tr{border-style: groove;}
 table tbody tr:hover{background: orange; }
 table th, td {padding: 0 20px; font-size: 18px; border: none;}
 
@@ -19,4 +19,7 @@ a {text-decoration:none; list-style: none;}
 .left:after {clear: both;}
 .right {float: right;}
 .right:after {clear:both;}
+.log input{float: left; display: inline-block;}
+.write a{float: left; display: inline-block;}
+
 h3 {text-align: center;}

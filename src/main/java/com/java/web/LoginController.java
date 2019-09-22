@@ -35,18 +35,17 @@ public class LoginController {
 	 ******************************************************************/
 	@Autowired
 	SqlSession session;
-	
+	//카카오 로그인(Auth)
 	@RequestMapping("/loginkakao")
 	public void login(HttpServletRequest req, HttpServletResponse res) {
 		try {
 			String url2 = "https://accounts.kakao.com/login?continue=";
 			String url = "https://kauth.kakao.com/oauth/authorize";
 			url += "?client_id=24a9cf2f6258f5b091fcf38880647a8e&redirect_uri=";
-			url += URLEncoder.encode("http://gdj16.gudi.kr:20010/KakaoBack", "UTF-8");
+			url +=URLEncoder.encode("http://localhost:8080/KakaoBack","UTF-8");
+//			url += URLEncoder.encode("http://gdj16.gudi.kr:20010/KakaoBack", "UTF-8");
 			url += "&response_type=code";
 			url2+=URLEncoder.encode(url, "UTF-8");
-//			System.out.println(url);
-//			res.sendRedirect(url);
 			res.sendRedirect(url2);
 		} catch (UnsupportedEncodingException e)  {
 			e.printStackTrace();
@@ -64,7 +63,7 @@ public class LoginController {
 			
 			String url="https://kauth.kakao.com/oauth/token";
 			url +="?client_id=24a9cf2f6258f5b091fcf38880647a8e&redirect_uri="; 
-			url +=URLEncoder.encode("http://gdj16.gudi.kr:20010/KakaoBack","UTF-8");
+			url +=URLEncoder.encode("http://localhost:8080/KakaoBack","UTF-8");
 			url +="&code="+code; 
 			url +="&grant_type=authorization_code";
 			System.out.println(url);
@@ -90,35 +89,30 @@ public class LoginController {
 			
 			System.out.println(userResult.get("profile_image"));
 			String id=(String) userResult.get("id");
+			String nickname=(String) userResult.get("nickname");
 				/* if(session.selectOne("login.select",userResult.get("id")) == "0") */
 			LoginBean result = session.selectOne("login.selectLogin",userResult.get("id"));
-				if(userResult.get("id").equals(result.getId()))
-					System.out.println("입력x");
-				else session.insert("login.insert",userResult);
+			if(userResult.get("id").equals(result.getId()))
+				System.out.println("입력x");
+			else session.insert("login.insert",userResult);
 			
 			LoginBean resultList = session.selectOne("login.selectLogin",userResult.get("id"));
 			req.setAttribute("login", jObject);
 			req.setAttribute("result", resultList);
 			
 			hs.setAttribute("id", id);
+			hs.setAttribute("nickname", nickname);
 			
-	//		HttpSession hs=req.getSession();
-	//		hs.setAttribute("login", "true");
-	
-//			res.sendRedirect("/");
-//			RequestDispatcher rd=req.getRequestDispatcher("/");
-//			rd.forward(req, res);
+
 		}catch(UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
 			e.printStackTrace();
-		} 
-//		catch (ServletException e) {
-//			e.printStackTrace();
-//		}
+		}
 		return "redirect:/";
 	}
-	////로그아웃
+	
+	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession hs, HttpServletRequest req, HttpServletResponse res) {
 		try {
@@ -156,6 +150,6 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		hs.invalidate();
-		return "redirect:/loginkakao";
+		return "redirect:/";
 	}
 }
