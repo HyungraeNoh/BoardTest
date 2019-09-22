@@ -1,6 +1,7 @@
 package com.java.web;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -87,15 +88,36 @@ public class LoginController {
 			userResult.put("profile_image", tmp.get("profile_image"));
 			userResult.put("thumbnail_image", tmp.get("thumbnail_image"));
 			
+			System.out.println("Data : " + userResult.toString());
+			
 			System.out.println(userResult.get("profile_image"));
 			String id=(String) userResult.get("id");
 			String nickname=(String) userResult.get("nickname");
-				/* if(session.selectOne("login.select",userResult.get("id")) == "0") */
+			
+			/*
+			 * 0 // 1
+			 * */
+			System.out.println(userResult.get("id"));
+			System.out.println( session.selectOne("login.select", userResult.get("id")).toString() ); // --> 신규가입 일땐 0 
+		
+			if(Integer.parseInt(session.selectOne("login.select", userResult.get("id"))) == 0){
+				System.out.println("새로운 접속자 로그인");
+				int count = session.insert("login.insert",userResult);
+				System.out.println("count : " + count);
+			} else {
+				System.out.println("기존 접속자 로그인");
+			}
+			//---------------------------------------------------------------
+			/*
 			LoginBean result = session.selectOne("login.selectLogin",userResult.get("id"));
+			
 			if(userResult.get("id").equals(result.getId()))
 				System.out.println("입력x");
-			else session.insert("login.insert",userResult);
-			
+			else {
+				session.insert("login.insert",userResult);
+				System.out.println("데이터 성공 ");
+			}
+			*/
 			LoginBean resultList = session.selectOne("login.selectLogin",userResult.get("id"));
 			req.setAttribute("login", jObject);
 			req.setAttribute("result", resultList);

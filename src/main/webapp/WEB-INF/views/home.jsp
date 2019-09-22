@@ -55,7 +55,7 @@
 	    </div>
 	    <div class="padding10 width45 log">
 	    	<form action="">
-	    		<input style="margin-right: 10px;" type="submit" formaction="/loginkakao" value="로그인">
+	    		<input style="margin-right: 10px" type="submit" formaction="/loginkakao" value="로그인">
 	    		<input type="submit" formaction="/logout" value="로그아웃">
 	    	</form>
            	
